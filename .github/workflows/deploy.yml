@@ -5,10 +5,10 @@ name: CI-CD billing
 on:
   push:
     branches: [main]
-    paths: ["services/billing/**", "services/common/**", "services/requirements.txt", "services/Dockerfile", ".github/workflows/billing.yml"]
+    paths: ["billing/**", "common/**", "requirements.txt", "Dockerfile", ".github/workflows/deploy.yml"]
   pull_request:
     branches: [main]
-    paths: ["services/billing/**", "services/common/**", "services/requirements.txt", "services/Dockerfile"]
+    paths: ["billing/**", "common/**", "requirements.txt", "Dockerfile"]
   workflow_dispatch:
 
 permissions:
@@ -20,9 +20,9 @@ jobs:
     uses: Kevinso4/logitrack-pipelines/.github/workflows/ci.yml@main
     with:
       service-name: billing
-      directorio: services
-      imagen: ghcr.io/kevinso4/tracklogi-billing
-      desplegar: false
+      directorio: "."
+      imagen: ghcr.io/kevinso4/logitrack-billing
+      desplegar: true
       url: https://tracklogi-billing.onrender.com
       render-service-id: srv-db7bqi2d0e5s7381le80
     secrets: inherit
